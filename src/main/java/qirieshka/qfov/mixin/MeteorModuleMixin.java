@@ -11,7 +11,8 @@ public class MeteorModuleMixin {
     @Inject(method = "isActive", at = @At("HEAD"), cancellable = true)
     private void onIsActive(CallbackInfoReturnable<Boolean> cir) {
         String name = this.getClass().getSimpleName();
-        if ("Xray".equals(name) || "Search".equals(name) || "CaveFinder".equals(name)) {
+        if ("Xray".equals(name) || "Search".equals(name) || "CaveFinder".equals(name) ||
+            "BlockESP".equals(name) || "StorageESP".equals(name)) {
             // Force return false so these modules are never active/enabled
             cir.setReturnValue(false);
         }
