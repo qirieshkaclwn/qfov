@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "qfov",
+  "version": "${version}",
+  "name": "qfov",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "BSD-3-Clause",
+  "icon": "assets/qfov/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "qirieshka.qfov.client.QfovDataGenerator"
+    ],
+    "client": [
+      "qirieshka.qfov.client.QfovClient"
+    ],
+    "main": [
+      "qirieshka.qfov.Qfov"
+    ],
+    "modmenu": [
+      "qirieshka.qfov.client.QfovModMenu"
+    ]
+  },
+  "mixins": [
+    "qfov.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
