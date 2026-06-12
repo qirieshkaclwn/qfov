@@ -55,6 +55,15 @@ public abstract class ClientboundLevelChunkPacketDataMixin {
         this.buffer = actualBuffer;
     }
 
+    @Redirect(
+        method = "extractChunkData",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/network/FriendlyByteBuf;capacity()I")
+    )
+    private static int redirectCapacity(FriendlyByteBuf buf) {
+        // Force capacity check to match writer index to bypass the "Didn't fill chunk buffer" exception
+        return buf.writerIndex();
+    }
+
     @Inject(method = "extractChunkData", at = @At("HEAD"))
     private static void onExtractChunkDataHead(FriendlyByteBuf buf, LevelChunk chunk, CallbackInfo ci) {
         AntiXrayLogic.currentLevel.set(chunk.getLevel());
