@@ -1,0 +1,6 @@
+{
+  "text.qfov.title": "Qfov Configuration",
+  "text.qfov.category.general": "General",
+  "text.qfov.option.prevent_fov_flipping": "Prevent FOV Flipping",
+  "text.qfov.option.prevent_fov_flipping.tooltip": "Clamps the rendering FOV before it crosses the 180° boundary, preventing the camera from flipping upside down (or vice versa)."
+}

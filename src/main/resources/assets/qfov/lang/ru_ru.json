@@ -1,0 +1,6 @@
+{
+  "text.qfov.title": "Настройки Qfov",
+  "text.qfov.category.general": "Общие",
+  "text.qfov.option.prevent_fov_flipping": "Предотвращать переворот экрана",
+  "text.qfov.option.prevent_fov_flipping.tooltip": "Ограничивает рассчитываемый FOV перед пересечением границы в 180°, предотвращая переворот камеры вверх ногами (или наоборот)."
+}

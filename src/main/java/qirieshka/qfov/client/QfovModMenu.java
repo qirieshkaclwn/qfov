@@ -15,13 +15,14 @@ public class QfovModMenu implements ModMenuApi {
         return parent -> {
             ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Component.literal("Qfov Configuration"));
+                .setTitle(Component.translatable("text.qfov.title"));
 
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-            ConfigCategory general = builder.getOrCreateCategory(Component.literal("General"));
+            ConfigCategory general = builder.getOrCreateCategory(Component.translatable("text.qfov.category.general"));
 
-            general.addEntry(entryBuilder.startBooleanToggle(Component.literal("Prevent FOV Flipping"), QfovConfig.preventFovFlipping)
+            general.addEntry(entryBuilder.startBooleanToggle(Component.translatable("text.qfov.option.prevent_fov_flipping"), QfovConfig.preventFovFlipping)
                 .setDefaultValue(true)
+                .setTooltip(Component.translatable("text.qfov.option.prevent_fov_flipping.tooltip"))
                 .setSaveConsumer(newValue -> {
                     QfovConfig.preventFovFlipping = newValue;
                     QfovConfig.save();
