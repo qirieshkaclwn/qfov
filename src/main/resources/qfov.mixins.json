@@ -3,12 +3,14 @@
   "minVersion": "0.8",
   "package": "qirieshka.qfov.mixin",
   "compatibilityLevel": "JAVA_25",
+  "plugin": "qirieshka.qfov.QfovMixinConfigPlugin",
   "mixins": [
     "ClientboundBlockUpdatePacketMixin",
     "ClientboundLevelChunkPacketDataMixin",
     "ClientboundSectionBlocksUpdatePacketMixin",
     "ChunkHolderMixin",
-    "ServerLevelMixin"
+    "ServerLevelMixin",
+    "MeteorModuleMixin"
   ],
   "client": [
     "GameOptionsMixin",
