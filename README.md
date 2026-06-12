@@ -1,5 +1,7 @@
 # Qfov (Field of View Unlocker)
 
+![Qfov Mod Logo](logo.png)
+
 A Minecraft Fabric mod for version **26.1.2** (running Java 25) that unlocks the game's Field of View (FOV) slider up to 359° and implements smart, bidirectional perspective flipping prevention.
 
 ## Features
@@ -29,3 +31,8 @@ To build the mod from source:
    ./gradlew build
    ```
 4. Find the built jar under `build/libs/qfov-1.0.jar` and copy it to your Minecraft `mods` folder.
+
+## Author
+
+- **qirieshka** - Creator and developer
+

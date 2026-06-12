@@ -3,8 +3,10 @@
   "id": "qfov",
   "version": "${version}",
   "name": "qfov",
-  "description": "",
-  "authors": [],
+  "description": "Unlocks the FOV slider up to 359 degrees with built-in bidirectional perspective flipping prevention.",
+  "authors": [
+    "qirieshka"
+  ],
   "contact": {},
   "license": "BSD-3-Clause",
   "icon": "assets/qfov/icon.png",
