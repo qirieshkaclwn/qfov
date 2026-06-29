@@ -107,21 +107,3 @@ publishing {
     }
 }
 
-tasks.register('buildAllVersions') {
-    group = "build"
-    description = "Builds the mod for all targeted Minecraft versions (26.1.2 and 26.2)"
-    doLast {
-        def args1 = ['./gradlew', 'clean', 'build', '-PtargetMcVersion=26.1.2']
-        def args2 = ['./gradlew', 'clean', 'build', '-PtargetMcVersion=26.2']
-        if (project.hasProperty('mod_version')) {
-            args1.add("-Pmod_version=${project.mod_version}")
-            args2.add("-Pmod_version=${project.mod_version}")
-        }
-        exec {
-            commandLine args1
-        }
-        exec {
-            commandLine args2
-        }
-    }
-}
