@@ -6,8 +6,10 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
+def mcVersion = project.hasProperty('targetMcVersion') ? project.property('targetMcVersion') : project.minecraft_version
+
 base {
-    archivesName = project.archives_base_name
+    archivesName = "${project.archives_base_name}-mc${mcVersion}"
 }
 
 
@@ -30,24 +32,30 @@ repositories {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${mcVersion}"
 
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    implementation "com.terraformersmc:modmenu:18.0.0-beta.1"
-    implementation "me.shedaniel.cloth:cloth-config-fabric:26.1.154"
+    if (mcVersion == "26.2") {
+        implementation "net.fabricmc.fabric-api:fabric-api:0.153.0+26.2"
+        implementation "com.terraformersmc:modmenu:20.0.0-beta.4"
+        implementation "me.shedaniel.cloth:cloth-config-fabric:26.2.155"
+    } else {
+        implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+        implementation "com.terraformersmc:modmenu:18.0.0-beta.1"
+        implementation "me.shedaniel.cloth:cloth-config-fabric:26.1.154"
+    }
 }
 
 processResources {
     inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "minecraft_version", mcVersion
     inputs.property "loader_version", project.loader_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
-                "minecraft_version": project.minecraft_version,
+                "minecraft_version": mcVersion,
                 "loader_version": project.loader_version
     }
 }
@@ -99,3 +107,21 @@ publishing {
     }
 }
 
+tasks.register('buildAllVersions') {
+    group = "build"
+    description = "Builds the mod for all targeted Minecraft versions (26.1.2 and 26.2)"
+    doLast {
+        def args1 = ['./gradlew', 'clean', 'build', '-PtargetMcVersion=26.1.2']
+        def args2 = ['./gradlew', 'clean', 'build', '-PtargetMcVersion=26.2']
+        if (project.hasProperty('mod_version')) {
+            args1.add("-Pmod_version=${project.mod_version}")
+            args2.add("-Pmod_version=${project.mod_version}")
+        }
+        exec {
+            commandLine args1
+        }
+        exec {
+            commandLine args2
+        }
+    }
+}

@@ -34,9 +34,9 @@ jobs:
         if [[ $GITHUB_REF == refs/tags/v* ]]; then
           VERSION=${GITHUB_REF_NAME#v}
           echo "Building tag version: $VERSION"
-          ./gradlew build -Pmod_version=$VERSION
+          ./gradlew buildAllVersions -Pmod_version=$VERSION
         else
-          ./gradlew build
+          ./gradlew buildAllVersions
         fi
 
     - name: Upload Artifacts
